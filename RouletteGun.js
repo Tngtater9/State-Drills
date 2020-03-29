@@ -13,18 +13,31 @@ class RouletteGun extends Component {
         }
     }
     componentWillUnmount () {
-        clearTimeout(this.timeout);
+        clearTimeout(this.timeout)
     }
     pullTrigger (props) {
-        this.setState({spinningTheChamber: true})
-        let spinning = this.state.spinningTheChamber === true ? "spinning the chamber and pulling the trigger! ..." : ""
-        this.setState({state: spinning})
+        // this.setState({spinningTheChamber: true})
+        // let spinning = this.state.spinningTheChamber === true ? "spinning the chamber and pulling the trigger! ..." : ""
+        // this.setState({state: spinning})
+        this.setState({spinningTheChamber: true,
+        state: "spinning the chamber and pulling the trigger! ..."})
         setTimeout(() =>{
-        this.setState({chamber: Math.floor(Math.random * 9)})
-        this.setState({spinningTheChamber: false})
-        let outcome = this.state.chamber === props ? "BANG!!!" : "You're safe"
-        this.setState({state: outcome})}, 2000)
+            const chamber = Math.ceil(Math.random() * 8)
+            console.log(chamber)
+            console.log(props)
+            let outcome = chamber === props ? "BANG!!!" : "You're safe"
+            this.setState({
+                chamber: chamber,
+                spinningTheChamber: false,
+                state: outcome
+            })
+        }, 2000)
+        // this.setState({chamber: {chamber},
+        //     spinningTheChamber: false})
+        // let outcome = this.state.chamber === props ? "BANG!!!" : "You're safe"
+        // this.setState({state: outcome})}, 2000)
         
+    
     }
     render () {
         return (<div>
